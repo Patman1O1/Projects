@@ -1,0 +1,12 @@
+{
+  "version": 10,
+  "configurePresets": [
+    {
+      "name": "gcc",
+      "hidden": true,
+      "cacheVariables": {
+        "CMAKE_C_COMPILER": "gcc"
+      }
+    }
+  ]
+}
