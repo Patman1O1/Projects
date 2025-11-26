@@ -1,0 +1,10 @@
+{
+  "version": 10,
+  "configurePresets": [
+    {
+      "name": "makefile",
+      "hidden": true,
+      "generator": "Unix Makefiles"
+    }
+  ]
+}
