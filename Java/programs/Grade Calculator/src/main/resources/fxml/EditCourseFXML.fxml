@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.layout.BorderPane?>
+<BorderPane xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.gradecalc.gui.EditCourseController"
+            fx:id="sceneRoot"
+            prefWidth="500.0"
+            prefHeight="500.0"
+            styleClass="border">
+
+    <top>
+        <MenuBar fx:id="menuBar">
+            <Menu text="File">
+                <MenuItem fx:id="newCourseItem" text="New Course" onAction="#showNewCourseScene"/>
+                <SeparatorMenuItem/>
+                <MenuItem fx:id="exitItem" text="Exit" onAction="#exit"/>
+            </Menu>
+        </MenuBar>
+    </top>
+</BorderPane>

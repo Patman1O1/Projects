@@ -1,0 +1,10 @@
+.root {
+    -fx-font-family: "Inter";
+    -fx-font-size: 14px;
+    -fx-text-fill: #222;
+}
+
+#courseNameLabel {
+    -fx-font-size: 30px;
+    -fx-font-weight: bold;
+}

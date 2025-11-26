@@ -1,0 +1,62 @@
+{
+  "name" : "CS 362",
+  "grade" : 0.5116999999999999,
+  "categories" : [ {
+    "name" : "Exams",
+    "grade" : 0.37,
+    "weight" : 0.15,
+    "items" : [ {
+      "name" : "Midterm 1",
+      "grade" : 0.37
+    } ],
+    "drops" : [ ]
+  }, {
+    "name" : "Group Project",
+    "grade" : 1.0,
+    "weight" : 0.25,
+    "items" : [ {
+      "name" : "Milestone 6",
+      "grade" : 1.0
+    } ],
+    "drops" : [ ]
+  }, {
+    "name" : "Homeworks",
+    "grade" : 0.49666666666666665,
+    "weight" : 0.18,
+    "items" : [ {
+      "name" : "Homework 1",
+      "grade" : 0.64
+    }, {
+      "name" : "Homework 2",
+      "grade" : 0.85
+    }, {
+      "name" : "Homework 3",
+      "grade" : 0.0
+    } ],
+    "drops" : [ ]
+  }, {
+    "name" : "Lab Assignments",
+    "grade" : 0.73,
+    "weight" : 0.16,
+    "items" : [ {
+      "name" : "Lab 1",
+      "grade" : 1.0
+    }, {
+      "name" : "Lab 3",
+      "grade" : 0.0
+    }, {
+      "name" : "Lab 4",
+      "grade" : 0.9
+    }, {
+      "name" : "Lab 5",
+      "grade" : 0.75
+    }, {
+      "name" : "Lab 6",
+      "grade" : 1.0
+    } ],
+    "drops" : [ {
+      "name" : "Lab 2",
+      "grade" : 0.0
+    } ]
+  } ]
+}

@@ -1,0 +1,35 @@
+Black Board
+-----------------------------------
+Weighted Average of Exam 01(15.00%)
+Homework Assignment 01(5.00%)
+Homework Assignment 02(5.00%)
+Lab Assignment 01(1.00%)
+Lab Assignment 02(1.00%)
+Lab Assignment 03(1.00%)
+Lab Assignment 04(1.00%)
+Lab Assignment 05(1.00%)
+Lab Assignment 06(1.00%)
+Lab Assignment 07(1.00%)
+Lab Assignment 08(1.00%)
+Quiz 01(1.00%)
+Quiz 02(1.00%)
+Quiz 03(1.00%)
+Quiz 04(1.00%)
+Quiz 05(1.00%)
+Quiz 06(1.00%)
+Quiz 07(1.00%)
+Quiz 08(1.00%)
+Quiz 09(1.00%)
+
+categoryWeight = syllabusWeight/|itemsSet - dropsSet|
+courseGrade = sigma(categoryWeight * categoryGrade) / sigma(categoryWeight)
+
+Syllabus
+----------------------------------
+Exams (30.00%)
+Homework Assignments (25.00%)
+Labs (10.00%)
+Quizzes (10.00%)
+
+categoryWeight = syllabusWeight
+courseGrade = sigma(categoryWeight * categoryGrade) / sigma(categoryWeight)

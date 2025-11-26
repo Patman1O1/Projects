@@ -1,0 +1,593 @@
+{
+  "name" : "PHYS 142",
+  "grade" : 0.5481308273670775,
+  "categories" : [ {
+    "name" : "Exams",
+    "weight" : 0.45,
+    "grade" : 0.385,
+    "items" : [ {
+      "name" : "Exam 1",
+      "earnedPoints" : 61.0,
+      "totalPoints" : 100.0,
+      "grade" : 0.61
+    }, {
+      "name" : "Exam 2",
+      "earnedPoints" : 54.5,
+      "totalPoints" : 100.0,
+      "grade" : 0.545
+    }, {
+      "name" : "Exam 3",
+      "earnedPoints" : 0.0,
+      "totalPoints" : 100.0,
+      "grade" : 0.0
+    } ],
+    "drops" : [ ]
+  }, {
+    "name" : "Group Problems",
+    "weight" : 0.1,
+    "grade" : 0.7630952380952379,
+    "items" : [ {
+      "name" : "Group Problems 10",
+      "earnedPoints" : 1.0,
+      "totalPoints" : 1.0,
+      "grade" : 1.0
+    }, {
+      "name" : "Group Problems 11",
+      "earnedPoints" : 4.0,
+      "totalPoints" : 5.0,
+      "grade" : 0.8
+    }, {
+      "name" : "Group Problems 12",
+      "earnedPoints" : 2.0,
+      "totalPoints" : 4.0,
+      "grade" : 0.5
+    }, {
+      "name" : "Group Problems 13",
+      "earnedPoints" : 4.0,
+      "totalPoints" : 6.0,
+      "grade" : 0.6666666666666666
+    }, {
+      "name" : "Group Problems 14",
+      "earnedPoints" : 3.0,
+      "totalPoints" : 4.0,
+      "grade" : 0.75
+    }, {
+      "name" : "Group Problems 15",
+      "earnedPoints" : 2.0,
+      "totalPoints" : 4.0,
+      "grade" : 0.5
+    }, {
+      "name" : "Group Problems 2",
+      "earnedPoints" : 2.0,
+      "totalPoints" : 3.0,
+      "grade" : 0.6666666666666666
+    }, {
+      "name" : "Group Problems 3",
+      "earnedPoints" : 3.0,
+      "totalPoints" : 5.0,
+      "grade" : 0.6
+    }, {
+      "name" : "Group Problems 4",
+      "earnedPoints" : 1.0,
+      "totalPoints" : 1.0,
+      "grade" : 1.0
+    }, {
+      "name" : "Group Problems 5",
+      "earnedPoints" : 4.0,
+      "totalPoints" : 5.0,
+      "grade" : 0.8
+    }, {
+      "name" : "Group Problems 6",
+      "earnedPoints" : 4.0,
+      "totalPoints" : 5.0,
+      "grade" : 0.8
+    }, {
+      "name" : "Group Problems 7",
+      "earnedPoints" : 1.0,
+      "totalPoints" : 1.0,
+      "grade" : 1.0
+    }, {
+      "name" : "Group Problems 8",
+      "earnedPoints" : 3.0,
+      "totalPoints" : 5.0,
+      "grade" : 0.6
+    }, {
+      "name" : "Group Problems 9",
+      "earnedPoints" : 1.0,
+      "totalPoints" : 1.0,
+      "grade" : 1.0
+    } ],
+    "drops" : [ {
+      "name" : "Group Problems 1",
+      "earnedPoints" : 2.0,
+      "totalPoints" : 4.0,
+      "grade" : 0.5
+    } ]
+  }, {
+    "name" : "Labs",
+    "weight" : 0.08,
+    "grade" : 0.669921875,
+    "items" : [ {
+      "name" : "Lab 1",
+      "earnedPoints" : 14.25,
+      "totalPoints" : 16.0,
+      "grade" : 0.890625
+    }, {
+      "name" : "Lab 10",
+      "earnedPoints" : 0.0,
+      "totalPoints" : 16.0,
+      "grade" : 0.0
+    }, {
+      "name" : "Lab 3",
+      "earnedPoints" : 14.95,
+      "totalPoints" : 16.0,
+      "grade" : 0.934375
+    }, {
+      "name" : "Lab 4",
+      "earnedPoints" : 14.0,
+      "totalPoints" : 16.0,
+      "grade" : 0.875
+    }, {
+      "name" : "Lab 5",
+      "earnedPoints" : 15.0,
+      "totalPoints" : 16.0,
+      "grade" : 0.9375
+    }, {
+      "name" : "Lab 6",
+      "earnedPoints" : 14.0,
+      "totalPoints" : 16.0,
+      "grade" : 0.875
+    }, {
+      "name" : "Lab 7",
+      "earnedPoints" : 0.0,
+      "totalPoints" : 16.0,
+      "grade" : 0.0
+    }, {
+      "name" : "Lab 9",
+      "earnedPoints" : 13.55,
+      "totalPoints" : 16.0,
+      "grade" : 0.846875
+    } ],
+    "drops" : [ {
+      "name" : "Lab 2",
+      "earnedPoints" : 0.0,
+      "totalPoints" : 16.0,
+      "grade" : 0.0
+    }, {
+      "name" : "Lab 8",
+      "earnedPoints" : 0.0,
+      "totalPoints" : 16.0,
+      "grade" : 0.0
+    } ]
+  }, {
+    "name" : "Lectures",
+    "weight" : 0.1,
+    "grade" : 0.7363782051282051,
+    "items" : [ {
+      "name" : "Lecture 1.2",
+      "earnedPoints" : 2.25,
+      "totalPoints" : 4.0,
+      "grade" : 0.5625
+    }, {
+      "name" : "Lecture 10.1",
+      "earnedPoints" : 2.25,
+      "totalPoints" : 3.0,
+      "grade" : 0.75
+    }, {
+      "name" : "Lecture 10.2",
+      "earnedPoints" : 2.75,
+      "totalPoints" : 4.0,
+      "grade" : 0.6875
+    }, {
+      "name" : "Lecture 11.1",
+      "earnedPoints" : 2.25,
+      "totalPoints" : 3.0,
+      "grade" : 0.75
+    }, {
+      "name" : "Lecture 11.2",
+      "earnedPoints" : 1.75,
+      "totalPoints" : 3.0,
+      "grade" : 0.5833333333333334
+    }, {
+      "name" : "Lecture 12.1",
+      "earnedPoints" : 3.0,
+      "totalPoints" : 4.0,
+      "grade" : 0.75
+    }, {
+      "name" : "Lecture 12.2",
+      "earnedPoints" : 1.75,
+      "totalPoints" : 3.0,
+      "grade" : 0.5833333333333334
+    }, {
+      "name" : "Lecture 13.1",
+      "earnedPoints" : 2.5,
+      "totalPoints" : 3.0,
+      "grade" : 0.8333333333333334
+    }, {
+      "name" : "Lecture 13.2",
+      "earnedPoints" : 3.5,
+      "totalPoints" : 4.0,
+      "grade" : 0.875
+    }, {
+      "name" : "Lecture 14.1",
+      "earnedPoints" : 2.5,
+      "totalPoints" : 3.0,
+      "grade" : 0.8333333333333334
+    }, {
+      "name" : "Lecture 14.2",
+      "earnedPoints" : 1.0,
+      "totalPoints" : 1.0,
+      "grade" : 1.0
+    }, {
+      "name" : "Lecture 15.1",
+      "earnedPoints" : 2.25,
+      "totalPoints" : 3.0,
+      "grade" : 0.75
+    }, {
+      "name" : "Lecture 15.2",
+      "earnedPoints" : 1.5,
+      "totalPoints" : 3.0,
+      "grade" : 0.5
+    }, {
+      "name" : "Lecture 2.2",
+      "earnedPoints" : 2.75,
+      "totalPoints" : 3.0,
+      "grade" : 0.9166666666666666
+    }, {
+      "name" : "Lecture 3.1",
+      "earnedPoints" : 1.5,
+      "totalPoints" : 3.0,
+      "grade" : 0.5
+    }, {
+      "name" : "Lecture 3.2",
+      "earnedPoints" : 2.25,
+      "totalPoints" : 3.0,
+      "grade" : 0.75
+    }, {
+      "name" : "Lecture 4.1",
+      "earnedPoints" : 2.5,
+      "totalPoints" : 4.0,
+      "grade" : 0.625
+    }, {
+      "name" : "Lecture 4.2",
+      "earnedPoints" : 2.5,
+      "totalPoints" : 3.0,
+      "grade" : 0.8333333333333334
+    }, {
+      "name" : "Lecture 5.2",
+      "earnedPoints" : 3.75,
+      "totalPoints" : 4.0,
+      "grade" : 0.9375
+    }, {
+      "name" : "Lecture 6.1",
+      "earnedPoints" : 1.0,
+      "totalPoints" : 3.0,
+      "grade" : 0.3333333333333333
+    }, {
+      "name" : "Lecture 6.2",
+      "earnedPoints" : 3.0,
+      "totalPoints" : 4.0,
+      "grade" : 0.75
+    }, {
+      "name" : "Lecture 7.1",
+      "earnedPoints" : 3.0,
+      "totalPoints" : 4.0,
+      "grade" : 0.75
+    }, {
+      "name" : "Lecture 7.2",
+      "earnedPoints" : 1.75,
+      "totalPoints" : 3.0,
+      "grade" : 0.5833333333333334
+    }, {
+      "name" : "Lecture 8.1",
+      "earnedPoints" : 2.5,
+      "totalPoints" : 3.0,
+      "grade" : 0.8333333333333334
+    }, {
+      "name" : "Lecture 8.2",
+      "earnedPoints" : 3.75,
+      "totalPoints" : 4.0,
+      "grade" : 0.9375
+    }, {
+      "name" : "Lecture 9.2",
+      "earnedPoints" : 3.75,
+      "totalPoints" : 4.0,
+      "grade" : 0.9375
+    } ],
+    "drops" : [ {
+      "name" : "Lecture 5.1",
+      "earnedPoints" : 0.0,
+      "totalPoints" : 3.0,
+      "grade" : 0.0
+    }, {
+      "name" : "Lecture 9.1",
+      "earnedPoints" : 0.75,
+      "totalPoints" : 3.0,
+      "grade" : 0.25
+    } ]
+  }, {
+    "name" : "Online HW",
+    "weight" : 0.075,
+    "grade" : 0.7502428571428572,
+    "items" : [ {
+      "name" : "Online HW 10",
+      "earnedPoints" : 61.33,
+      "totalPoints" : 100.0,
+      "grade" : 0.6133
+    }, {
+      "name" : "Online HW 11",
+      "earnedPoints" : 76.14,
+      "totalPoints" : 100.0,
+      "grade" : 0.7614
+    }, {
+      "name" : "Online HW 12",
+      "earnedPoints" : 100.0,
+      "totalPoints" : 100.0,
+      "grade" : 1.0
+    }, {
+      "name" : "Online HW 13",
+      "earnedPoints" : 91.67,
+      "totalPoints" : 100.0,
+      "grade" : 0.9167000000000001
+    }, {
+      "name" : "Online HW 14",
+      "earnedPoints" : 99.53,
+      "totalPoints" : 100.0,
+      "grade" : 0.9953
+    }, {
+      "name" : "Online HW 15",
+      "earnedPoints" : 0.0,
+      "totalPoints" : 100.0,
+      "grade" : 0.0
+    }, {
+      "name" : "Online HW 2",
+      "earnedPoints" : 95.0,
+      "totalPoints" : 100.0,
+      "grade" : 0.95
+    }, {
+      "name" : "Online HW 3",
+      "earnedPoints" : 90.0,
+      "totalPoints" : 100.0,
+      "grade" : 0.9
+    }, {
+      "name" : "Online HW 4",
+      "earnedPoints" : 93.33,
+      "totalPoints" : 100.0,
+      "grade" : 0.9333
+    }, {
+      "name" : "Online HW 5",
+      "earnedPoints" : 68.89,
+      "totalPoints" : 100.0,
+      "grade" : 0.6889
+    }, {
+      "name" : "Online HW 6",
+      "earnedPoints" : 94.45,
+      "totalPoints" : 100.0,
+      "grade" : 0.9445
+    }, {
+      "name" : "Online HW 7",
+      "earnedPoints" : 83.33,
+      "totalPoints" : 100.0,
+      "grade" : 0.8332999999999999
+    }, {
+      "name" : "Online HW 8",
+      "earnedPoints" : 96.67,
+      "totalPoints" : 100.0,
+      "grade" : 0.9667
+    }, {
+      "name" : "Online HW 9",
+      "earnedPoints" : 0.0,
+      "totalPoints" : 100.0,
+      "grade" : 0.0
+    } ],
+    "drops" : [ {
+      "name" : "Online HW 1",
+      "earnedPoints" : 0.0,
+      "totalPoints" : 100.0,
+      "grade" : 0.0
+    } ]
+  }, {
+    "name" : "Prelabs",
+    "weight" : 0.02,
+    "grade" : 0.7444444444444445,
+    "items" : [ {
+      "name" : "Prelab 1",
+      "earnedPoints" : 4.0,
+      "totalPoints" : 4.0,
+      "grade" : 1.0
+    }, {
+      "name" : "Prelab 10",
+      "earnedPoints" : 4.0,
+      "totalPoints" : 4.0,
+      "grade" : 1.0
+    }, {
+      "name" : "Prelab 2",
+      "earnedPoints" : 1.5,
+      "totalPoints" : 4.0,
+      "grade" : 0.375
+    }, {
+      "name" : "Prelab 3",
+      "earnedPoints" : 3.25,
+      "totalPoints" : 4.0,
+      "grade" : 0.8125
+    }, {
+      "name" : "Prelab 4",
+      "earnedPoints" : 3.5,
+      "totalPoints" : 4.0,
+      "grade" : 0.875
+    }, {
+      "name" : "Prelab 6",
+      "earnedPoints" : 3.25,
+      "totalPoints" : 4.0,
+      "grade" : 0.8125
+    }, {
+      "name" : "Prelab 7",
+      "earnedPoints" : 3.8,
+      "totalPoints" : 4.0,
+      "grade" : 0.95
+    }, {
+      "name" : "Prelab 8",
+      "earnedPoints" : 0.0,
+      "totalPoints" : 4.0,
+      "grade" : 0.0
+    }, {
+      "name" : "Prelab 9",
+      "earnedPoints" : 3.5,
+      "totalPoints" : 4.0,
+      "grade" : 0.875
+    } ],
+    "drops" : [ {
+      "name" : "Prelab 5",
+      "earnedPoints" : 0.0,
+      "totalPoints" : 4.0,
+      "grade" : 0.0
+    } ]
+  }, {
+    "name" : "Quizzes",
+    "weight" : 0.1,
+    "grade" : 0.4272727272727273,
+    "items" : [ {
+      "name" : "Quiz 1",
+      "earnedPoints" : 6.0,
+      "totalPoints" : 20.0,
+      "grade" : 0.3
+    }, {
+      "name" : "Quiz 10",
+      "earnedPoints" : 10.0,
+      "totalPoints" : 20.0,
+      "grade" : 0.5
+    }, {
+      "name" : "Quiz 11",
+      "earnedPoints" : 3.0,
+      "totalPoints" : 20.0,
+      "grade" : 0.15
+    }, {
+      "name" : "Quiz 12",
+      "earnedPoints" : 4.0,
+      "totalPoints" : 20.0,
+      "grade" : 0.2
+    }, {
+      "name" : "Quiz 2",
+      "earnedPoints" : 13.0,
+      "totalPoints" : 20.0,
+      "grade" : 0.65
+    }, {
+      "name" : "Quiz 3",
+      "earnedPoints" : 14.0,
+      "totalPoints" : 20.0,
+      "grade" : 0.7
+    }, {
+      "name" : "Quiz 4",
+      "earnedPoints" : 5.0,
+      "totalPoints" : 20.0,
+      "grade" : 0.25
+    }, {
+      "name" : "Quiz 5",
+      "earnedPoints" : 17.0,
+      "totalPoints" : 20.0,
+      "grade" : 0.85
+    }, {
+      "name" : "Quiz 6",
+      "earnedPoints" : 8.0,
+      "totalPoints" : 20.0,
+      "grade" : 0.4
+    }, {
+      "name" : "Quiz 8",
+      "earnedPoints" : 5.0,
+      "totalPoints" : 20.0,
+      "grade" : 0.25
+    }, {
+      "name" : "Quiz 9",
+      "earnedPoints" : 9.0,
+      "totalPoints" : 20.0,
+      "grade" : 0.45
+    } ],
+    "drops" : [ {
+      "name" : "Quiz 7",
+      "earnedPoints" : 0.0,
+      "totalPoints" : 20.0,
+      "grade" : 0.0
+    } ]
+  }, {
+    "name" : "Written HW",
+    "weight" : 0.075,
+    "grade" : 0.7660714285714285,
+    "items" : [ {
+      "name" : "Written HW 0",
+      "earnedPoints" : 14.0,
+      "totalPoints" : 20.0,
+      "grade" : 0.7
+    }, {
+      "name" : "Written HW 1",
+      "earnedPoints" : 17.0,
+      "totalPoints" : 20.0,
+      "grade" : 0.85
+    }, {
+      "name" : "Written HW 10",
+      "earnedPoints" : 20.0,
+      "totalPoints" : 20.0,
+      "grade" : 1.0
+    }, {
+      "name" : "Written HW 11",
+      "earnedPoints" : 0.0,
+      "totalPoints" : 20.0,
+      "grade" : 0.0
+    }, {
+      "name" : "Written HW 12",
+      "earnedPoints" : 18.0,
+      "totalPoints" : 20.0,
+      "grade" : 0.9
+    }, {
+      "name" : "Written HW 13",
+      "earnedPoints" : 4.0,
+      "totalPoints" : 4.0,
+      "grade" : 1.0
+    }, {
+      "name" : "Written HW 14",
+      "earnedPoints" : 18.0,
+      "totalPoints" : 20.0,
+      "grade" : 0.9
+    }, {
+      "name" : "Written HW 2",
+      "earnedPoints" : 18.0,
+      "totalPoints" : 20.0,
+      "grade" : 0.9
+    }, {
+      "name" : "Written HW 3",
+      "earnedPoints" : 16.5,
+      "totalPoints" : 20.0,
+      "grade" : 0.825
+    }, {
+      "name" : "Written HW 4",
+      "earnedPoints" : 19.0,
+      "totalPoints" : 20.0,
+      "grade" : 0.95
+    }, {
+      "name" : "Written HW 6",
+      "earnedPoints" : 15.0,
+      "totalPoints" : 20.0,
+      "grade" : 0.75
+    }, {
+      "name" : "Written HW 7",
+      "earnedPoints" : 20.0,
+      "totalPoints" : 20.0,
+      "grade" : 1.0
+    }, {
+      "name" : "Written HW 8",
+      "earnedPoints" : 19.0,
+      "totalPoints" : 20.0,
+      "grade" : 0.95
+    }, {
+      "name" : "Written HW 9",
+      "earnedPoints" : 0.0,
+      "totalPoints" : 20.0,
+      "grade" : 0.0
+    } ],
+    "drops" : [ {
+      "name" : "Written HW 5",
+      "earnedPoints" : 0.0,
+      "totalPoints" : 20.0,
+      "grade" : 0.0
+    } ]
+  } ]
+}
