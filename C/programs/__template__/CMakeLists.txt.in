@@ -1,0 +1,64 @@
+#-----------------------------------------------------------------------------------------------------------------------
+# Information
+#-----------------------------------------------------------------------------------------------------------------------
+cmake_minimum_required(VERSION @CMAKE_VERSION@)
+project(@NAME@
+    VERSION @VERSION@
+    DESCRIPTION @DESCRIPTION@
+    LANGUAGES C)
+
+cmake_file_api(
+        QUERY
+        API_VERSION 1
+        CODEMODEL 2.3
+)
+
+#-----------------------------------------------------------------------------------------------------------------------
+# Includes
+#-----------------------------------------------------------------------------------------------------------------------
+include(CMakePackageConfigHelpers)
+
+
+#-----------------------------------------------------------------------------------------------------------------------
+# Settings and Options
+#-----------------------------------------------------------------------------------------------------------------------
+string(COMPARE EQUAL "${CMAKE_SOURCE_DIR}" "${CMAKE_CURRENT_SOURCE_DIR}" IS_TOP_LEVEL)
+
+option(@NAME_UPPER@_BUILD_DOCS "Build @NAME@ documentation" OFF)
+
+if(NOT DEFINED CMAKE_BUILD_TYPE AND NOT DEFINED CMAKE_CONFIGURATION_TYPES)
+    set(CMAKE_BUILD_TYPE Release CACHE STRING "Build type" FORCE)
+    set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS "Debug" "Release" "MinSizeRel" "RelWithDebInfo")
+endif()
+
+set(CMAKE_C_VISIBILITY_PRESET hidden)
+set(CMAKE_VISIBILITY_INLINES_HIDDEN ON)
+
+
+#-----------------------------------------------------------------------------------------------------------------------
+# Dependencies
+#-----------------------------------------------------------------------------------------------------------------------
+
+
+#-----------------------------------------------------------------------------------------------------------------------
+# Sources
+#-----------------------------------------------------------------------------------------------------------------------
+add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/src")
+
+source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}" FILES ${SOURCES})
+
+
+#-----------------------------------------------------------------------------------------------------------------------
+# Targets
+#-----------------------------------------------------------------------------------------------------------------------
+add_executable(@NAME@ ${SOURCES})
+
+target_include_directories(@NAME@
+    PUBLIC
+        "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
+        "$<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/include>")
+
+set_target_properties(@NAME@ PROPERTIES
+    SOVERSION ${PROJECT_VERSION_MAJOR}
+    VERSION ${PROJECT_VERSION})
+

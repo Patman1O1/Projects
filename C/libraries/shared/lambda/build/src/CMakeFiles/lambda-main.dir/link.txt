@@ -1,0 +1,1 @@
+/usr/bin/cc -Wl,--dependency-file=CMakeFiles/lambda-main.dir/link.d "CMakeFiles/lambda-main.dir/main.c.o" -o lambda-main  -Wl,-rpath,/mnt/c/Users/patri/OneDrive/Coding/C/libraries/shared/lambda/build ../liblambda.so.1.0.0

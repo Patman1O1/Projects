@@ -1,0 +1,6 @@
+#ifndef EXPORT_H
+#define EXPORT_H
+
+#include "@NAME@/export_shared.h"
+
+#endif // EXPORT_H

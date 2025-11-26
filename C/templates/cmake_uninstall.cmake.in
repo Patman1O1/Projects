@@ -1,0 +1,49 @@
+if(NOT EXISTS "@CMAKE_BINARY_DIR@/install_manifest.txt")
+  message(FATAL_ERROR "Cannot find install manifest: @CMAKE_BINARY_DIR@/install_manifest.txt")
+endif()
+
+file(READ "@CMAKE_BINARY_DIR@/install_manifest.txt" FILES)
+string(REGEX REPLACE "\n" ";" FILES "${FILES}")
+
+# Store directories to clean up
+set(DIRS_TO_REMOVE "")
+
+foreach(FILE ${FILES})
+  set(FULL_PATH "$ENV{DESTDIR}${FILE}")
+
+  message(STATUS "Uninstalling ${FULL_PATH}")
+
+  if(IS_SYMLINK "${FULL_PATH}" OR EXISTS "${FULL_PATH}")
+    execute_process(
+      COMMAND "@CMAKE_COMMAND@" -E remove "${FULL_PATH}"
+      RESULT_VARIABLE rm_retval
+    )
+    if(NOT rm_retval EQUAL 0)
+      message(FATAL_ERROR "Problem removing ${FULL_PATH}")
+    endif()
+
+    # Collect the directory for later cleanup
+    get_filename_component(DIR "${FULL_PATH}" DIRECTORY)
+    list(APPEND DIRS_TO_REMOVE "${DIR}")
+  else()
+    message(STATUS "File ${FULL_PATH} does not exist.")
+  endif()
+endforeach()
+
+# Remove duplicates
+list(REMOVE_DUPLICATES DIRS_TO_REMOVE)
+
+# Sort directories by depth (deepest first)
+list(SORT DIRS_TO_REMOVE ORDER DESCENDING)
+
+# Remove empty directories
+foreach(DIR ${DIRS_TO_REMOVE})
+  if(EXISTS "${DIR}")
+    message(STATUS "Attempting to remove directory ${DIR}")
+    execute_process(
+      COMMAND "@CMAKE_COMMAND@" -E remove_directory "${DIR}"
+      RESULT_VARIABLE rm_dir_retval
+    )
+    # remove_directory does nothing if the directory is not empty
+  endif()
+endforeach()
