@@ -1,0 +1,12 @@
+{
+  "version": 10,
+  "configurePresets": [
+    {
+      "name": "clang++",
+      "hidden": true,
+      "cacheVariables": {
+        "CMAKE_CXX_COMPILER": "clang++"
+      }
+    }
+  ]
+}
