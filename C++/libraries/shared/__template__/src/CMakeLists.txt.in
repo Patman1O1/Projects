@@ -1,0 +1,26 @@
+#-----------------------------------------------------------------------------------------------------------------------
+# Information
+#-----------------------------------------------------------------------------------------------------------------------
+cmake_minimum_required(VERSION @CMAKE_VERSION@)
+project(@NAME@-main LANGUAGES CXX)
+
+
+#-----------------------------------------------------------------------------------------------------------------------
+# Dependencies
+#-----------------------------------------------------------------------------------------------------------------------
+string(COMPARE EQUAL "${CMAKE_SOURCE_DIR}" "${CMAKE_CURRENT_SOURCE_DIR}" IS_TOP_LEVEL)
+
+if(IS_TOP_LEVEL)
+    find_package(@NAME@ REQUIRED)
+endif()
+
+
+#----------------------------------------------------------------------------------------------------------------------
+# Sources
+#----------------------------------------------------------------------------------------------------------------------
+set(SOURCES main.cpp)
+source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}" FILES ${SOURCES})
+
+add_executable(@NAME@-main)
+target_sources(@NAME@-main PRIVATE ${SOURCES})
+target_link_libraries(@NAME@-main PRIVATE @NAMESPACE@::@NAME@)

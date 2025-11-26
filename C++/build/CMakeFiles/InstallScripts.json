@@ -1,0 +1,12 @@
+{
+	"InstallScripts" : 
+	[
+		"/mnt/c/Users/patri/OneDrive/Coding/C++/build/cmake_install.cmake",
+		"/mnt/c/Users/patri/OneDrive/Coding/C++/build/libraries/cmake_install.cmake",
+		"/mnt/c/Users/patri/OneDrive/Coding/C++/build/libraries/interface/cmake_install.cmake",
+		"/mnt/c/Users/patri/OneDrive/Coding/C++/build/libraries/shared/cmake_install.cmake",
+		"/mnt/c/Users/patri/OneDrive/Coding/C++/build/libraries/static/cmake_install.cmake",
+		"/mnt/c/Users/patri/OneDrive/Coding/C++/build/programs/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

@@ -1,4 +1,7 @@
 #include <cstddef>
+#include <iostream>
+
+#include "@NAME@/@NAME@.hpp"
 
 int main(int argc, char* argv[]) {
 

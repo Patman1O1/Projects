@@ -1,0 +1,13 @@
+/mnt/c/Users/patri/OneDrive/Coding/C++/build/CMakeFiles/main.dir
+/mnt/c/Users/patri/OneDrive/Coding/C++/build/CMakeFiles/edit_cache.dir
+/mnt/c/Users/patri/OneDrive/Coding/C++/build/CMakeFiles/rebuild_cache.dir
+/mnt/c/Users/patri/OneDrive/Coding/C++/build/libraries/CMakeFiles/edit_cache.dir
+/mnt/c/Users/patri/OneDrive/Coding/C++/build/libraries/CMakeFiles/rebuild_cache.dir
+/mnt/c/Users/patri/OneDrive/Coding/C++/build/libraries/interface/CMakeFiles/edit_cache.dir
+/mnt/c/Users/patri/OneDrive/Coding/C++/build/libraries/interface/CMakeFiles/rebuild_cache.dir
+/mnt/c/Users/patri/OneDrive/Coding/C++/build/libraries/shared/CMakeFiles/edit_cache.dir
+/mnt/c/Users/patri/OneDrive/Coding/C++/build/libraries/shared/CMakeFiles/rebuild_cache.dir
+/mnt/c/Users/patri/OneDrive/Coding/C++/build/libraries/static/CMakeFiles/edit_cache.dir
+/mnt/c/Users/patri/OneDrive/Coding/C++/build/libraries/static/CMakeFiles/rebuild_cache.dir
+/mnt/c/Users/patri/OneDrive/Coding/C++/build/programs/CMakeFiles/edit_cache.dir
+/mnt/c/Users/patri/OneDrive/Coding/C++/build/programs/CMakeFiles/rebuild_cache.dir

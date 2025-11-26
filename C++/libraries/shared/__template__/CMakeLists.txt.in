@@ -1,0 +1,139 @@
+#-----------------------------------------------------------------------------------------------------------------------
+# Information
+#-----------------------------------------------------------------------------------------------------------------------
+cmake_minimum_required(VERSION @CMAKE_VERSION@)
+project(@NAME@
+    VERSION @VERSION@
+    DESCRIPTION @DESCRIPTION@
+    LANGUAGES CXX)
+
+cmake_file_api(
+        QUERY
+        API_VERSION 1
+        CODEMODEL 2.3
+)
+
+#-----------------------------------------------------------------------------------------------------------------------
+# Includes
+#-----------------------------------------------------------------------------------------------------------------------
+include(GNUInstallDirs)
+include(GenerateExportHeader)
+include(CMakePackageConfigHelpers)
+
+
+#-----------------------------------------------------------------------------------------------------------------------
+# Settings and Options
+#-----------------------------------------------------------------------------------------------------------------------
+string(COMPARE EQUAL "${CMAKE_SOURCE_DIR}" "${CMAKE_CURRENT_SOURCE_DIR}" IS_TOP_LEVEL)
+
+option(@NAME_UPPER@_BUILD_DOCS "Build @NAME@ documentation" OFF)
+
+set(@NAME_UPPER@_INSTALL_CMAKEDIR "${CMAKE_INSTALL_LIBDIR}/cmake/@NAME@" CACHE STRING
+    "Install path for @NAME@ package-related CMake files")
+
+set(BUILD_SHARED_LIBS ${@NAME_UPPER@_SHARED_LIBS})
+
+if(NOT DEFINED CMAKE_BUILD_TYPE AND NOT DEFINED CMAKE_CONFIGURATION_TYPES)
+    set(CMAKE_BUILD_TYPE Release CACHE STRING "Build type" FORCE)
+    set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS "Debug" "Release" "MinSizeRel" "RelWithDebInfo")
+endif()
+
+set(CMAKE_CXX_VISIBILITY_PRESET hidden)
+set(CMAKE_VISIBILITY_INLINES_HIDDEN ON)
+
+add_library(@NAME@ SHARED)
+add_library(@NAMESPACE@::@NAME@ ALIAS @NAME@)
+
+
+#-----------------------------------------------------------------------------------------------------------------------
+# Sources
+#-----------------------------------------------------------------------------------------------------------------------
+add_subdirectory(tests)
+add_subdirectory(src)
+
+set(EXPORT_FILE_NAME "export_shared.hpp")
+
+generate_export_header(@NAME@ EXPORT_FILE_NAME include/@NAME@/${EXPORT_FILE_NAME})
+
+set(SOURCES
+    include/@NAME@/export.hpp
+    include/@NAME@/@NAME@.hpp
+    src/@NAME@.cpp)
+source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}" FILES ${SOURCES})
+
+
+#-----------------------------------------------------------------------------------------------------------------------
+# Targets
+#-----------------------------------------------------------------------------------------------------------------------
+target_sources(@NAME@ PRIVATE ${SOURCES})
+
+target_include_directories(@NAME@
+    PUBLIC
+        "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
+        "$<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/include>")
+
+set_target_properties(@NAME@ PROPERTIES
+    SOVERSION ${PROJECT_VERSION_MAJOR}
+    VERSION ${PROJECT_VERSION})
+
+
+#-----------------------------------------------------------------------------------------------------------------------
+# Dependencies
+#-----------------------------------------------------------------------------------------------------------------------
+
+
+#-----------------------------------------------------------------------------------------------------------------------
+# Installation
+#-----------------------------------------------------------------------------------------------------------------------
+if(NOT CMAKE_SKIP_INSTALL_RULES)
+    configure_package_config_file(cmake/@NAME@-config.cmake.in @NAME@-config.cmake
+        INSTALL_DESTINATION "${@NAME_UPPER@_INSTALL_CMAKEDIR}")
+
+    write_basic_package_version_file(@NAME@-config-version.cmake
+        COMPATIBILITY SameMajorVersion)
+
+    install(TARGETS @NAME@ EXPORT @NAME@_export
+        RUNTIME COMPONENT @NAME@
+        LIBRARY COMPONENT @NAME@ NAMELINK_COMPONENT @NAME@-dev
+        ARCHIVE COMPONENT @NAME@-dev
+        INCLUDES DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}")
+    install(DIRECTORY include/
+        TYPE INCLUDE
+        COMPONENT @NAME@-dev)
+    install(FILES "${CMAKE_CURRENT_BINARY_DIR}/include/@NAME@/${EXPORT_FILE_NAME}"
+        COMPONENT @NAME@-dev
+        DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/@NAME@")
+
+    set(targets_file "@NAME@-shared-targets.cmake")
+
+    install(EXPORT @NAME@_export
+        COMPONENT @NAME@-dev
+        FILE "${targets_file}"
+        DESTINATION "${@NAME_UPPER@_INSTALL_CMAKEDIR}"
+        NAMESPACE @NAMESPACE@::)
+
+    install(FILES
+        "${CMAKE_CURRENT_BINARY_DIR}/@NAME@-config.cmake"
+        "${CMAKE_CURRENT_BINARY_DIR}/@NAME@-config-version.cmake"
+        COMPONENT @NAME@-dev
+        DESTINATION "${@NAME_UPPER@_INSTALL_CMAKEDIR}")
+
+endif()
+
+if(@NAME_UPPER@_BUILD_DOCS)
+    find_package(Doxygen REQUIRED)
+    doxygen_add_docs(docs include)
+endif()
+
+
+#-----------------------------------------------------------------------------------------------------------------------
+# Uninstallation
+#-----------------------------------------------------------------------------------------------------------------------
+if(NOT TARGET uninstall)
+  configure_file(
+    "${CMAKE_CURRENT_SOURCE_DIR}/cmake/cmake_uninstall.cmake.in"
+    "${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake"
+    IMMEDIATE @ONLY)
+
+  add_custom_target(uninstall COMMAND ${CMAKE_COMMAND} -P "${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake")
+endif()
