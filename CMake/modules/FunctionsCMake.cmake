@@ -43,6 +43,7 @@ endfunction()
 # Parameters:
 #   LIBRARY_TARGET
 #-----------------------------------------------------------------------------------------------------------------------
+# TODO uninstall()
 function(uninstall LIBRARY_TARGET)
     # Ensure the target exists
     if(NOT TARGET ${LIBRARY_TARGET})
