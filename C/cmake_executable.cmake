@@ -60,8 +60,8 @@ file(COPY_FILE ".gitignore" "${EXECUTABLE_SOURCE_DIR}/.gitignore")
 file(MAKE_DIRECTORY "${EXECUTABLE_SOURCE_DIR}/src")
 
 configure_file(
-        "${TEMPLATE_DIR}/src/main.cpp.in"
-        "${EXECUTABLE_SOURCE_DIR}/src/main.cpp"
+        "${TEMPLATE_DIR}/src/main.c.in"
+        "${EXECUTABLE_SOURCE_DIR}/src/main.c"
         @ONLY
 )
 
@@ -81,8 +81,8 @@ configure_file(
 )
 
 configure_file(
-        "${TEMPLATE_DIR}/tests/__template___tests.cpp.in"
-        "${EXECUTABLE_SOURCE_DIR}/tests/${NAME}_tests.cpp"
+        "${TEMPLATE_DIR}/tests/__template___tests.c.in"
+        "${EXECUTABLE_SOURCE_DIR}/tests/${NAME}_tests.c"
 )
 
 # Prompt the user that the executable was successfully created
