@@ -1,67 +1,23 @@
-#-----------------------------------------------------------------------------------------------------------------------
-# Information
-#-----------------------------------------------------------------------------------------------------------------------
-cmake_minimum_required(VERSION @CMAKE_VERSION@)
-project(@NAME@-tests)
+cmake_minimum_required(VERSION ${CMAKE_MINIMUM_REQUIRED_VERSION})
+project(${LIBRARY_TARGET}-tests LANGUAGES CXX)
+
+include_gtest()
 
 
-#-----------------------------------------------------------------------------------------------------------------------
-# Includes
-#-----------------------------------------------------------------------------------------------------------------------
-include(FetchContent)
-
-
-#-----------------------------------------------------------------------------------------------------------------------
-# Settings and Options
-#-----------------------------------------------------------------------------------------------------------------------
-string(COMPARE EQUAL "${CMAKE_SOURCE_DIR}" "${CMAKE_CURRENT_SOURCE_DIR}" IS_TOP_LEVEL)
-if(IS_TOP_LEVEL)
+if("${CMAKE_SOURCE_DIR}" STREQUAL "${CMAKE_CURRENT_SOURCE_DIR}")
     enable_testing()
+    find_package(${LIBRARY_TARGET} REQUIRED)
 endif()
 
+add_executable(${LIBRARY_TARGET}-tests)
 
-#-----------------------------------------------------------------------------------------------------------------------
-# Google Tests
-#-----------------------------------------------------------------------------------------------------------------------
-FetchContent_Declare(googletest URL https://github.com/google/googletest/archive/refs/tags/release-1.12.1.tar.gz)
-
-set(gtest_force_shared_crt ON CACHE BOOL "" FORCE) # do not override parent project's runtime settings on Windows
-set(INSTALL_GTEST OFF)
-
-# For simplicity, always build googletest as static library. This prevents @NAME@-tests executable from
-# complaining about missing googletest DLLs on Windows.
-set(BUILD_SHARED_LIBS OFF)
-
-FetchContent_MakeAvailable(googletest)
-
-include(GoogleTest)
-
-
-#-----------------------------------------------------------------------------------------------------------------------
-# Dependencies
-#-----------------------------------------------------------------------------------------------------------------------
-if(IS_TOP_LEVEL)
-    find_package(@NAME@ REQUIRED)
-endif()
-
-
-#----------------------------------------------------------------------------------------------------------------------
-# Sources
-#----------------------------------------------------------------------------------------------------------------------
-set(SOURCES
-    @NAME@_tests.cpp)
+set(SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/${LIBRARY_TARGET}_tests.cpp")
+target_sources(${LIBRARY_TARGET}-tests PRIVATE ${SOURCES})
 source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}" FILES ${SOURCES})
 
-
-#----------------------------------------------------------------------------------------------------------------------
-# Targets
-#----------------------------------------------------------------------------------------------------------------------
-add_executable(@NAME@-tests)
-target_sources(@NAME@-tests PRIVATE ${SOURCES})
-
-target_link_libraries(@NAME@-tests
+target_link_libraries(${LIBRARY_TARGET}-tests
     PRIVATE
-        @NAMESPACE@::@NAME@
+        ${LIBRARY_NAMESPACE}::${LIBRARY_TARGET}
         gtest_main)
 
-gtest_discover_tests(@NAME@-tests)
+gtest_discover_tests(${LIBRARY_TARGET}-tests)
