@@ -1,0 +1,69 @@
+{
+  "version": 10,
+  "cmakeMinimumRequired": {
+    "major": 4,
+    "minor": 1,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "default",
+      "displayName": "Default",
+      "description": "The base configuration preset that all other configuration presets inherit from.",
+      "hidden": true
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "default",
+      "displayName": "Default",
+      "description": "The base build preset that all other build presets inherit from.",
+      "hidden": true,
+      "configurePreset": "default"
+    }
+  ],
+  "testPresets": [
+    {
+      "name": "default",
+      "displayName": "Default",
+      "description": "The base test preset that all other test presets inherit from.",
+      "hidden": true,
+      "configurePreset": "default"
+    }
+  ],
+  "packagePresets": [
+    {
+      "name": "default",
+      "displayName": "Default",
+      "description": "The base package preset that all other package presets inherit from.",
+      "hidden": true,
+      "configurePreset": "default"
+    }
+  ],
+  "workflowPresets": [
+    {
+      "name": "default",
+      "displayName": "Default",
+      "description": "The base workflow preset that all other workflow presets inherit from.",
+      "hidden": true,
+      "steps": [
+        {
+          "type": "configure",
+          "name": "default"
+        },
+        {
+          "type": "build",
+          "name": "default"
+        },
+        {
+          "type": "test",
+          "name": "default"
+        },
+        {
+          "type": "package",
+          "name": "default"
+        }
+      ]
+    }
+  ]
+}
