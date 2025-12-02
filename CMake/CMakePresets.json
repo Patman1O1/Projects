@@ -10,7 +10,13 @@
       "name": "default",
       "displayName": "Default",
       "description": "The base configuration preset that all other configuration presets inherit from.",
-      "hidden": true
+      "hidden": true,
+      "cacheVariables": {
+
+      },
+      "environment": {
+
+      }
     }
   ],
   "buildPresets": [
