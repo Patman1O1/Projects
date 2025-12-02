@@ -1,13 +1,15 @@
 #-----------------------------------------------------------------------------------------------------------------------
-# Includes
-#-----------------------------------------------------------------------------------------------------------------------
-include("../cmake/preconfigure.cmake")
-
-#-----------------------------------------------------------------------------------------------------------------------
 # Information
 #-----------------------------------------------------------------------------------------------------------------------
 cmake_minimum_required(VERSION ${CMAKE_MINIMUM_REQUIRED_VERSION})
 project(Libraries LANGUAGES NONE)
+
+cmake_file_api(
+        QUERY
+        API_VERSION 1
+        CODEMODEL 2.3
+)
+
 
 #-----------------------------------------------------------------------------------------------------------------------
 # Subdirectories
@@ -15,13 +17,4 @@ project(Libraries LANGUAGES NONE)
 add_subdirectory("interface")
 add_subdirectory("shared")
 add_subdirectory("static")
-
-#-----------------------------------------------------------------------------------------------------------------------
-# Variables
-#-----------------------------------------------------------------------------------------------------------------------
-set(NAME "" CACHE STRING "NAME")
-set(TYPE "" CACHE STRING "TYPE")
-set(NAMESPACE "" CACHE STRING "NAMESPACE")
-set(VERSION 1.0.0 CACHE STRING "VERSION")
-set(DESCRIPTION "" CACHE STRING "DESCRIPTION")
 
