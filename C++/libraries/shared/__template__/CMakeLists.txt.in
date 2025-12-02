@@ -48,9 +48,9 @@ target_sources(${LIBRARY_TARGET} PRIVATE ${LIBRARY_SOURCES})
 # Group sources for IDE
 source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}" FILES ${LIBRARY_SOURCES})
 
-option(BUILD_TESTS "Build the library's test suits" OFF)
-option(BUILD_MAIN "Build an executable linked to the library" OFF)
-option(BUILD_DOCS "Generate library documentation" OFF)
+option(BUILD_TESTS "Build the library's test suits")
+option(BUILD_MAIN "Build an executable linked to the library")
+option(BUILD_DOCS "Generate library documentation")
 
 if(BUILD_TESTS)
     add_subdirectory(tests)
