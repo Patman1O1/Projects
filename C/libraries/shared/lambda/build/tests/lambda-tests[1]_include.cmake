@@ -1,5 +1,0 @@
-if(EXISTS "/mnt/c/Users/patri/OneDrive/Coding/C/libraries/shared/lambda/build/tests/lambda-tests[1]_tests.cmake")
-  include("/mnt/c/Users/patri/OneDrive/Coding/C/libraries/shared/lambda/build/tests/lambda-tests[1]_tests.cmake")
-else()
-  add_test(lambda-tests_NOT_BUILT lambda-tests_NOT_BUILT)
-endif()

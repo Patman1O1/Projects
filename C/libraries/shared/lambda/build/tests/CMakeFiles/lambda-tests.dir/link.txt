@@ -1,1 +1,0 @@
-/usr/bin/c++ -Wl,--dependency-file=CMakeFiles/lambda-tests.dir/link.d "CMakeFiles/lambda-tests.dir/lambda_tests.cpp.o" -o lambda-tests  -Wl,-rpath,/mnt/c/Users/patri/OneDrive/Coding/C/libraries/shared/lambda/build ../liblambda.so.1.0.0 ../lib/libgtest_main.a ../lib/libgtest.a

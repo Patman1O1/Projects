@@ -1,4 +1,4 @@
-#ifndef @NAME_UPPER@_H
-#define @NAME_UPPER@_H
+#ifndef @NAME_UPPER@_HPP
+#define @NAME_UPPER@_HPP
 
-#endif // @NAME_UPPER@_H
+#endif // @NAME_UPPER@_HPP

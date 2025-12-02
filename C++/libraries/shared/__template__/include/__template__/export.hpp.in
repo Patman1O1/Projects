@@ -1,6 +1,0 @@
-#ifndef EXPORT_HPP
-#define EXPORT_HPP
-
-#include "@NAME@/export_shared.hpp"
-
-#endif // EXPORT_HPP

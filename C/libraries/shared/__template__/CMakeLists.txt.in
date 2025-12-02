@@ -5,7 +5,7 @@ cmake_minimum_required(VERSION @CMAKE_VERSION@)
 project(@NAME@
     VERSION @VERSION@
     DESCRIPTION @DESCRIPTION@
-    LANGUAGES C)
+    LANGUAGES CXX)
 
 cmake_file_api(
         QUERY
@@ -13,127 +13,134 @@ cmake_file_api(
         CODEMODEL 2.3
 )
 
+
 #-----------------------------------------------------------------------------------------------------------------------
 # Includes
 #-----------------------------------------------------------------------------------------------------------------------
-include(GNUInstallDirs)
-include(GenerateExportHeader)
-include(CMakePackageConfigHelpers)
+include("../../../../CMake/modules/FunctionsCMake.cmake")
+include("../../../../CMake/modules/FunctionsCXX.cmake")
 
 
 #-----------------------------------------------------------------------------------------------------------------------
-# Settings and Options
+# Settings
 #-----------------------------------------------------------------------------------------------------------------------
-string(COMPARE EQUAL "${CMAKE_SOURCE_DIR}" "${CMAKE_CURRENT_SOURCE_DIR}" IS_TOP_LEVEL)
-
-option(@NAME_UPPER@_BUILD_DOCS "Build @NAME@ documentation" OFF)
-
-set(@NAME_UPPER@_INSTALL_CMAKEDIR "${CMAKE_INSTALL_LIBDIR}/cmake/@NAME@" CACHE STRING
-    "Install path for @NAME@ package-related CMake files")
-
-set(BUILD_SHARED_LIBS ${@NAME_UPPER@_SHARED_LIBS})
-
+# Set default build type if not specified
 if(NOT DEFINED CMAKE_BUILD_TYPE AND NOT DEFINED CMAKE_CONFIGURATION_TYPES)
     set(CMAKE_BUILD_TYPE Release CACHE STRING "Build type" FORCE)
     set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS "Debug" "Release" "MinSizeRel" "RelWithDebInfo")
 endif()
 
-set(CMAKE_C_VISIBILITY_PRESET hidden)
-set(CMAKE_VISIBILITY_INLINES_HIDDEN ON)
-
-add_library(@NAME@ SHARED)
-add_library(@NAMESPACE@::@NAME@ ALIAS @NAME@)
-
 
 #-----------------------------------------------------------------------------------------------------------------------
-# Sources
+# Variables
 #-----------------------------------------------------------------------------------------------------------------------
-add_subdirectory(tests)
-add_subdirectory(src)
-
-set(EXPORT_FILE_NAME "export_shared.h")
-
-generate_export_header(@NAME@ EXPORT_FILE_NAME include/@NAME@/${EXPORT_FILE_NAME})
-
-set(SOURCES
-    include/@NAME@/export.h
-    include/@NAME@/@NAME@.h
-    src/@NAME@.c)
-source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}" FILES ${SOURCES})
+set(LIBRARY_TARGET ${PROJECT_NAME} CACHE STRING "Library target")
+set(LIBRARY_NAMESPACE "@NAMESPACE@" CACHE STRING "Library namespace")
 
 
 #-----------------------------------------------------------------------------------------------------------------------
 # Targets
 #-----------------------------------------------------------------------------------------------------------------------
-target_sources(@NAME@ PRIVATE ${SOURCES})
+add_library(${LIBRARY_TARGET} SHARED)
+add_library(${LIBRARY_NAMESPACE}::${LIBRARY_TARGET} ALIAS ${LIBRARY_TARGET})
 
-target_include_directories(@NAME@
+
+#-----------------------------------------------------------------------------------------------------------------------
+# Target Properties
+#-----------------------------------------------------------------------------------------------------------------------
+# Set the library properties
+set_target_properties(${LIBRARY_TARGET} PROPERTIES
+    SOVERSION ${PROJECT_VERSION_MAJOR}
+    VERSION ${PROJECT_VERSION}
+)
+
+
+#-----------------------------------------------------------------------------------------------------------------------
+# Target Includes
+#-----------------------------------------------------------------------------------------------------------------------
+# Include library directories
+target_include_directories(${LIBRARY_TARGET}
     PUBLIC
         "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
-        "$<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/include>")
-
-set_target_properties(@NAME@ PROPERTIES
-    SOVERSION ${PROJECT_VERSION_MAJOR}
-    VERSION ${PROJECT_VERSION})
+        "$<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/include>"
+        "$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>"
+)
 
 
 #-----------------------------------------------------------------------------------------------------------------------
-# Dependencies
+# Target Sources
 #-----------------------------------------------------------------------------------------------------------------------
+# Add source files
+set(LIBRARY_SOURCES
+    "${CMAKE_CURRENT_SOURCE_DIR}/include/${LIBRARY_TARGET}/export.hpp"
+            "${CMAKE_CURRENT_SOURCE_DIR}/include/${LIBRARY_TARGET}/${LIBRARY_TARGET}.hpp"
+            "${CMAKE_CURRENT_SOURCE_DIR}/src/${LIBRARY_TARGET}.cpp")
+
+    target_sources(${LIBRARY_TARGET} PRIVATE ${LIBRARY_SOURCES})
+
+    # Group sources for IDE
+    source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}" FILES ${LIBRARY_SOURCES})
+
+
+#-----------------------------------------------------------------------------------------------------------------------
+# Options
+#-----------------------------------------------------------------------------------------------------------------------
+option(BUILD_TESTS "Build the library's test suits" OFF)
+option(BUILD_MAIN "Build an executable linked to the library" OFF)
+option(BUILD_DOCS "Generate library documentation" OFF)
+
+if(BUILD_TESTS)
+    add_subdirectory(tests)
+endif()
+
+if(BUILD_MAIN)
+    add_subdirectory(src)
+endif()
+
+if(BUILD_DOCS)
+    build_docs()
+endif()
 
 
 #-----------------------------------------------------------------------------------------------------------------------
 # Installation
 #-----------------------------------------------------------------------------------------------------------------------
-if(NOT CMAKE_SKIP_INSTALL_RULES)
-    configure_package_config_file(cmake/@NAME@-config.cmake.in @NAME@-config.cmake
-        INSTALL_DESTINATION "${@NAME_UPPER@_INSTALL_CMAKEDIR}")
+configure_package_config_file("${CMAKE_CURRENT_SOURCE_DIR}/cmake/${LIBRARY_TARGET}-config.cmake.in"
+                              "${LIBRARY_TARGET}-config.cmake"
+                              INSTALL_DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/${LIBRARY_TARGET}"
+                              NO_CHECK_REQUIRED_COMPONENTS_MACRO)
 
-    write_basic_package_version_file(@NAME@-config-version.cmake
-        COMPATIBILITY SameMajorVersion)
+write_basic_package_version_file("${LIBRARY_TARGET}-config-version.cmake"
+                                 COMPATIBILITY SameMajorVersion)
 
-    install(TARGETS @NAME@ EXPORT @NAME@_export
-        RUNTIME COMPONENT @NAME@
-        LIBRARY COMPONENT @NAME@ NAMELINK_COMPONENT @NAME@-dev
-        ARCHIVE COMPONENT @NAME@-dev
+install(TARGETS ${LIBRARY_TARGET}
+        EXPORT ${LIBRARY_TARGET}-targets
+        RUNTIME COMPONENT ${LIBRARY_TARGET}
+        LIBRARY COMPONENT ${LIBRARY_TARGET} NAMELINK_COMPONENT ${LIBRARY_TARGET}-dev
+        ARCHIVE COMPONENT ${LIBRARY_TARGET}-dev
         INCLUDES DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}")
-    install(DIRECTORY include/
+
+install(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/include/"
         TYPE INCLUDE
-        COMPONENT @NAME@-dev)
-    install(FILES "${CMAKE_CURRENT_BINARY_DIR}/include/@NAME@/${EXPORT_FILE_NAME}"
-        COMPONENT @NAME@-dev
-        DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/@NAME@")
+        COMPONENT ${LIBRARY_TARGET}-dev)
 
-    set(targets_file "@NAME@-shared-targets.cmake")
+install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/include/${LIBRARY_TARGET}/export.hpp"
+        COMPONENT ${LIBRARY_TARGET}-dev
+        DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/${LIBRARY_TARGET}")
 
-    install(EXPORT @NAME@_export
-        COMPONENT @NAME@-dev
-        FILE "${targets_file}"
-        DESTINATION "${@NAME_UPPER@_INSTALL_CMAKEDIR}"
-        NAMESPACE @NAMESPACE@::)
+install(EXPORT ${LIBRARY_TARGET}-targets
+        COMPONENT ${LIBRARY_TARGET}-dev
+        FILE "${LIBRARY_TARGET}-export.cmake"
+        DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/${LIBRARY_TARGET}"
+        NAMESPACE ${LIBRARY_NAMESPACE}::)
 
-    install(FILES
-        "${CMAKE_CURRENT_BINARY_DIR}/@NAME@-config.cmake"
-        "${CMAKE_CURRENT_BINARY_DIR}/@NAME@-config-version.cmake"
-        COMPONENT @NAME@-dev
-        DESTINATION "${@NAME_UPPER@_INSTALL_CMAKEDIR}")
-
-endif()
-
-if(@NAME_UPPER@_BUILD_DOCS)
-    find_package(Doxygen REQUIRED)
-    doxygen_add_docs(docs include)
-endif()
+install(FILES
+        "${CMAKE_CURRENT_BINARY_DIR}/${LIBRARY_TARGET}-config.cmake"
+        "${CMAKE_CURRENT_BINARY_DIR}/${LIBRARY_TARGET}-config-version.cmake"
+        COMPONENT ${LIBRARY_TARGET}-dev
+        DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/${LIBRARY_TARGET}")
 
 
 #-----------------------------------------------------------------------------------------------------------------------
 # Uninstallation
 #-----------------------------------------------------------------------------------------------------------------------
-if(NOT TARGET uninstall)
-  configure_file(
-    "${CMAKE_CURRENT_SOURCE_DIR}/cmake/cmake_uninstall.cmake.in"
-    "${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake"
-    IMMEDIATE @ONLY)
-
-  add_custom_target(uninstall COMMAND ${CMAKE_COMMAND} -P "${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake")
-endif()
