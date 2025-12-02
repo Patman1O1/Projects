@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION @CMAKE_VERSION@)
 project(@NAME@
     VERSION @VERSION@
     DESCRIPTION @DESCRIPTION@
-    LANGUAGES CXX)
+    LANGUAGES C)
 
 cmake_file_api(
         QUERY
@@ -11,7 +11,6 @@ cmake_file_api(
 )
 
 include("../../../../CMake/modules/FunctionsCMake.cmake")
-include("../../../../CMake/modules/FunctionsCXX.cmake")
 
 # Set default build type if not specified
 if(NOT DEFINED CMAKE_BUILD_TYPE AND NOT DEFINED CMAKE_CONFIGURATION_TYPES)
@@ -54,8 +53,6 @@ endif()
 if(BUILD_DOCS)
     build_docs()
 endif()
-
-install_interface_cxx_library("${PROJECT_NAME}" "${NAMESPACE}")
 
 configure_package_config_file("${CMAKE_CURRENT_SOURCE_DIR}/cmake/${LIBRARY_TARGET}-config.cmake.in"
                               "${LIBRARY_TARGET}-config.cmake"

@@ -1,7 +1,7 @@
-#include <cstddef>
-#include <iostream>
+#include <stdlib.h>
+#include <stdio.h>
 
-#include "@NAME@/@NAME@.hpp"
+#include "@NAME@/@NAME@.h"
 
 int main(int argc, char* argv[]) {
 

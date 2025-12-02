@@ -1,11 +1,8 @@
-#-----------------------------------------------------------------------------------------------------------------------
-# Information
-#-----------------------------------------------------------------------------------------------------------------------
 cmake_minimum_required(VERSION @CMAKE_VERSION@)
 project(@NAME@
     VERSION @VERSION@
     DESCRIPTION @DESCRIPTION@
-    LANGUAGES CXX)
+    LANGUAGES C)
 
 cmake_file_api(
         QUERY
@@ -13,51 +10,26 @@ cmake_file_api(
         CODEMODEL 2.3
 )
 
-
-#-----------------------------------------------------------------------------------------------------------------------
-# Includes
-#-----------------------------------------------------------------------------------------------------------------------
 include("../../../../CMake/modules/FunctionsCMake.cmake")
-include("../../../../CMake/modules/FunctionsCXX.cmake")
 
-
-#-----------------------------------------------------------------------------------------------------------------------
-# Settings
-#-----------------------------------------------------------------------------------------------------------------------
 # Set default build type if not specified
 if(NOT DEFINED CMAKE_BUILD_TYPE AND NOT DEFINED CMAKE_CONFIGURATION_TYPES)
     set(CMAKE_BUILD_TYPE Release CACHE STRING "Build type" FORCE)
     set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS "Debug" "Release" "MinSizeRel" "RelWithDebInfo")
 endif()
 
-
-#-----------------------------------------------------------------------------------------------------------------------
-# Variables
-#-----------------------------------------------------------------------------------------------------------------------
 set(LIBRARY_TARGET ${PROJECT_NAME} CACHE STRING "Library target")
 set(LIBRARY_NAMESPACE "@NAMESPACE@" CACHE STRING "Library namespace")
 
-
-#-----------------------------------------------------------------------------------------------------------------------
-# Targets
-#-----------------------------------------------------------------------------------------------------------------------
 add_library(${LIBRARY_TARGET} SHARED)
 add_library(${LIBRARY_NAMESPACE}::${LIBRARY_TARGET} ALIAS ${LIBRARY_TARGET})
 
-
-#-----------------------------------------------------------------------------------------------------------------------
-# Target Properties
-#-----------------------------------------------------------------------------------------------------------------------
 # Set the library properties
 set_target_properties(${LIBRARY_TARGET} PROPERTIES
     SOVERSION ${PROJECT_VERSION_MAJOR}
     VERSION ${PROJECT_VERSION}
 )
 
-
-#-----------------------------------------------------------------------------------------------------------------------
-# Target Includes
-#-----------------------------------------------------------------------------------------------------------------------
 # Include library directories
 target_include_directories(${LIBRARY_TARGET}
     PUBLIC
@@ -66,25 +38,17 @@ target_include_directories(${LIBRARY_TARGET}
         "$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>"
 )
 
-
-#-----------------------------------------------------------------------------------------------------------------------
-# Target Sources
-#-----------------------------------------------------------------------------------------------------------------------
 # Add source files
 set(LIBRARY_SOURCES
-    "${CMAKE_CURRENT_SOURCE_DIR}/include/${LIBRARY_TARGET}/export.hpp"
-            "${CMAKE_CURRENT_SOURCE_DIR}/include/${LIBRARY_TARGET}/${LIBRARY_TARGET}.hpp"
-            "${CMAKE_CURRENT_SOURCE_DIR}/src/${LIBRARY_TARGET}.cpp")
+    "${CMAKE_CURRENT_SOURCE_DIR}/include/${LIBRARY_TARGET}/export.h"
+            "${CMAKE_CURRENT_SOURCE_DIR}/include/${LIBRARY_TARGET}/${LIBRARY_TARGET}.h"
+            "${CMAKE_CURRENT_SOURCE_DIR}/src/${LIBRARY_TARGET}.c")
 
     target_sources(${LIBRARY_TARGET} PRIVATE ${LIBRARY_SOURCES})
 
     # Group sources for IDE
     source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}" FILES ${LIBRARY_SOURCES})
 
-
-#-----------------------------------------------------------------------------------------------------------------------
-# Options
-#-----------------------------------------------------------------------------------------------------------------------
 option(BUILD_TESTS "Build the library's test suits" OFF)
 option(BUILD_MAIN "Build an executable linked to the library" OFF)
 option(BUILD_DOCS "Generate library documentation" OFF)
@@ -101,10 +65,6 @@ if(BUILD_DOCS)
     build_docs()
 endif()
 
-
-#-----------------------------------------------------------------------------------------------------------------------
-# Installation
-#-----------------------------------------------------------------------------------------------------------------------
 configure_package_config_file("${CMAKE_CURRENT_SOURCE_DIR}/cmake/${LIBRARY_TARGET}-config.cmake.in"
                               "${LIBRARY_TARGET}-config.cmake"
                               INSTALL_DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/${LIBRARY_TARGET}"
@@ -124,7 +84,7 @@ install(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/include/"
         TYPE INCLUDE
         COMPONENT ${LIBRARY_TARGET}-dev)
 
-install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/include/${LIBRARY_TARGET}/export.hpp"
+install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/include/${LIBRARY_TARGET}/export.h"
         COMPONENT ${LIBRARY_TARGET}-dev
         DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/${LIBRARY_TARGET}")
 
