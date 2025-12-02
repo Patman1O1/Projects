@@ -1,8 +1,8 @@
 {
   "version": 10,
   "cmakeMinimumRequired": {
-    "major": 4,
-    "minor": 1,
+    "major": 3,
+    "minor": 3,
     "patch": 0
   },
   "configurePresets": [
@@ -10,90 +10,117 @@
       "name": "default",
       "displayName": "Default",
       "description": "The base configuration preset that all other configuration presets inherit from.",
-      "hidden": true,
-      "cacheVariables": {
-        "CMAKE_MINIMUM_REQUIRED_VERSION": "3.5",
-        "CMAKE_REQUIRED_VERSION": "4.1",
-        "CMAKE_C_STANDARD": 23,
-        "CMAKE_C_STANDARD_REQUIRED": true,
-        "CMAKE_CXX_STANDARD": 23,
-        "CMAKE_CXX_STANDARD_REQUIRED": true,
-        "BUILD_TESTS": false,
-        "BUILD_MAIN": false,
-        "BUILD_DOCS": false
-      },
-      "environment": {
-
-      }
+      "hidden": true
     },
     {
       "name": "linux",
       "displayName": "Linux",
       "description": "The base configuration preset for all Linux configuration presets",
       "inherits": "default",
-      "cacheVariables": {
-        "CMAKE_SYSTEM_NAME": "Linux"
-      },
       "hidden": true
+    },
+    {
+      "name": "linux-gnu-make",
+      "displayName": "Linux GNU Make",
+      "description": "A Linux preset that uses gcc and g++ as it's compilers and Unix Makefiles as the build generator.",
+      "inherits": "linux",
+      "hidden": false,
+      "binaryDir": "${sourceDir}/build/linux-gnu-make",
+      "generator": "Unix Makefiles",
+      "cacheVariables": {
+        "CMAKE_ASM_COMPILER": "gcc",
+        "CMAKE_C_COMPILER": "gcc",
+        "CMAKE_CXX_COMPILER": "g++"
+      },
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      }
+    },
+    {
+      "name": "linux-gnu-ninja",
+      "displayName": "Linux GNU Ninja",
+      "description": "A Linux preset that uses gcc and g++ as it's compilers and Ninja as the build generator.",
+      "inherits": "linux",
+      "hidden": false,
+      "binaryDir": "${sourceDir}/build/linux-gnu-ninja",
+      "generator": "Ninja",
+      "cacheVariables": {
+        "CMAKE_ASM_COMPILER": "gcc",
+        "CMAKE_C_COMPILER": "gcc",
+        "CMAKE_CXX_COMPILER": "g++"
+      },
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      }
+    },
+    {
+      "name": "linux-clang-make",
+      "displayName": "Linux Clang Make",
+      "description": "A Linux preset that uses clang and clang++ as it's compilers and Unix Makefiles as the build generator.",
+      "inherits": "linux",
+      "hidden": false,
+      "binaryDir": "${sourceDir}/build/linux-clang-make",
+      "generator": "Unix Makefiles",
+      "cacheVariables": {
+        "CMAKE_ASM_COMPILER": "clang",
+        "CMAKE_C_COMPILER": "clang",
+        "CMAKE_CXX_COMPILER": "clang++"
+      },
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      }
+    },
+    {
+      "name": "linux-clang-ninja",
+      "displayName": "Linux Clang Ninja",
+      "description": "A Linux preset that uses clang and clang++ as it's compilers and Ninja as the build generator.",
+      "inherits": "linux",
+      "hidden": false,
+      "binaryDir": "${sourceDir}/build/linux-clang-ninja",
+      "generator": "Ninja",
+      "cacheVariables": {
+        "CMAKE_ASM_COMPILER": "clang",
+        "CMAKE_C_COMPILER": "clang",
+        "CMAKE_CXX_COMPILER": "clang++"
+      },
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      }
     },
     {
       "name": "windows",
       "displayName": "Windows",
       "description": "The base configuration preset for all Windows configuration presets",
       "inherits": "default",
-      "cacheVariables": {
-        "CMAKE_SYSTEM_NAME": "Windows"
-      },
       "hidden": true
     },
     {
-      "name": "mac-os",
+      "name": "macos",
       "displayName": "macOS",
       "description": "The base configuration preset for all macOS configuration presets",
       "inherits": "default",
-      "cacheVariables": {
-        "CMAKE_SYSTEM_NAME": "Darwin"
-      },
       "hidden": true
     },
     {
-      "name": "linux-x86-64",
-      "displayName": "Linux x86-64",
-      "description": "The base configuration preset for all Linux x86-64 presets",
-      "inherits": "linux",
-      "cacheVariables": {
-        "CMAKE_SYSTEM_PROCESSOR": "x86_64"
-      },
+      "name": "android",
+      "displayName": "Android",
+      "description": "The base configuration preset for all Android configuration presets",
+      "inherits": "default",
       "hidden": true
     },
     {
-      "name": "linux-arm",
-      "displayName": "Linux ARM",
-      "description": "The base configuration preset for all Linux ARM presets",
-      "inherits": "linux",
-      "cacheVariables": {
-        "CMAKE_SYSTEM_PROCESSOR": "arm"
-      },
-      "hidden": true
-    },
-    {
-      "name": "windows-x86-64",
-      "displayName": "Windows x86-64",
-      "description": "The base configuration preset for all Windows x86-64 presets",
-      "inherits": "windows",
-      "cacheVariables": {
-        "CMAKE_SYSTEM_PROCESSOR": "x86_64"
-      },
-      "hidden": true
-    },
-    {
-      "name": "windows-arm",
-      "displayName": "Windows ARM",
-      "description": "The base configuration preset for Windows ARM presets",
-      "inherits": "windows",
-      "cacheVariables": {
-        "CMAKE_SYSTEM_PROCESSOR": "arm"
-      },
+      "name": "ios",
+      "displayName": "iOS",
+      "description": "The base configuration preset for all iOS configuration presets",
+      "inherits": "default",
       "hidden": true
     }
   ],
@@ -129,7 +156,6 @@
       "name": "default",
       "displayName": "Default",
       "description": "The base workflow preset that all other workflow presets inherit from.",
-      "hidden": true,
       "steps": [
         {
           "type": "configure",
