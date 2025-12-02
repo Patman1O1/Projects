@@ -69,27 +69,27 @@ file(COPY_FILE ".gitignore" "${LIBRARY_SOURCE_DIR}/.gitignore")
 # Configure ${LIBRARY_SOURCE_DIR}/include/${NAME}
 file(MAKE_DIRECTORY "${LIBRARY_SOURCE_DIR}/include/${NAME}")
 configure_file(
-        "${TEMPLATE_DIR}/include/__template__/__template__.hpp.in"
-        "${LIBRARY_SOURCE_DIR}/include/${NAME}/${NAME}.hpp"
+        "${TEMPLATE_DIR}/include/__template__/__template__.h.in"
+        "${LIBRARY_SOURCE_DIR}/include/${NAME}/${NAME}.h"
         @ONLY
 )
 
 if(NOT "${TYPE}" MATCHES "INTERFACE")
-    configure_file(
-            "${TEMPLATE_DIR}/include/__template__/export.hpp.in"
-            "${LIBRARY_SOURCE_DIR}/include/${NAME}/export.hpp"
-            @ONLY
-    )
-
     # Configure ${LIBRARY_SOURCE_DIR}/src
     file(MAKE_DIRECTORY "${LIBRARY_SOURCE_DIR}/src")
     configure_file(
-            "${TEMPLATE_DIR}/src/__template__.cpp.in"
-            "${LIBRARY_SOURCE_DIR}/src/${NAME}.cpp"
+            "${TEMPLATE_DIR}/src/__template__.c.in"
+            "${LIBRARY_SOURCE_DIR}/src/${NAME}.c"
             @ONLY
     )
+endif()
 
-
+if(${TYPE} MATCHES "SHARED")
+    configure_file(
+            "${TEMPLATE_DIR}/include/__template__/export.h.in"
+            "${LIBRARY_SOURCE_DIR}/include/${NAME}/export.h"
+            @ONLY
+    )
 endif()
 
 configure_file(
@@ -99,8 +99,8 @@ configure_file(
 )
 
 configure_file(
-        "${TEMPLATE_DIR}/src/main.cpp.in"
-        "${LIBRARY_SOURCE_DIR}/src/main.cpp"
+        "${TEMPLATE_DIR}/src/main.c.in"
+        "${LIBRARY_SOURCE_DIR}/src/main.c"
         @ONLY
 )
 
