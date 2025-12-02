@@ -7,9 +7,9 @@ endif()
 
 add_executable(${LIBRARY_TARGET}-main)
 
-target_sources(${LIBRARY_TARGET}-main PRIVATE ${SOURCES})
-target_link_libraries(${LIBRARY_TARGET}-main PRIVATE ${LIBRARY_NAMESPACE}::${LIBRARY_TARGET})
-
 set(SOURCES main.c)
+target_sources(${LIBRARY_TARGET}-main PRIVATE ${SOURCES})
 source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}" FILES ${SOURCES})
+
+target_link_libraries(${LIBRARY_TARGET}-main PRIVATE ${LIBRARY_NAMESPACE}::${LIBRARY_TARGET})
 
