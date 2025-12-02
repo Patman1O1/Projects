@@ -38,9 +38,9 @@ target_include_directories(${LIBRARY_TARGET}
         "$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>"
 )
 
-option(BUILD_TESTS "Build the library's test suits" OFF)
-option(BUILD_MAIN "Build an executable linked to the library" OFF)
-option(BUILD_DOCS "Generate library documentation" OFF)
+option(BUILD_TESTS "Build the library's test suits")
+option(BUILD_MAIN "Build an executable linked to the library")
+option(BUILD_DOCS "Generate library documentation")
 
 if(BUILD_TESTS)
     add_subdirectory(tests)
