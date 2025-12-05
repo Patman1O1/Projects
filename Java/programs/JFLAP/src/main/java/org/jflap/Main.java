@@ -10,8 +10,9 @@ import java.io.IOException;
 * */
 
 public class Main {
-    public static final File JFLAP_FILE = new File("C:\\Users\\patri\\OneDrive\\Coding\\Java\\Programs\\Jflap\\",
-                                             "JFLAP7.1.jar");
+    public static final File JFLAP_FILE = new File("");
+    //public static final File JFLAP_FILE = new File("C:\\Users\\patri\\OneDrive\\Coding\\Java\\Programs\\Jflap\\",
+                                             //"JFLAP7.1.jar");
 
     public static void runJflap() {
         try {

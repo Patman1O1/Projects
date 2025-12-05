@@ -1,0 +1,12 @@
+{
+  "version": 10,
+  "include": ["../cmake-version.json"],
+  "configurePresets": [
+    {
+      "name": "default",
+      "displayName": "Default",
+      "description": "The base configuration preset that all other configuration presets inherit from.",
+      "hidden": true
+    }
+  ]
+}

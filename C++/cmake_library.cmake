@@ -62,6 +62,10 @@ configure_file(
         @ONLY
 )
 
+configure_package_config_file(
+
+)
+
 file(COPY_FILE "CMakePresets.json" "${LIBRARY_SOURCE_DIR}/CMakePresets.json")
 
 file(COPY_FILE ".gitignore" "${LIBRARY_SOURCE_DIR}/.gitignore")
