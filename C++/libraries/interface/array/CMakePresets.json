@@ -1,0 +1,21 @@
+{
+  "version": 10,
+  "cmakeMinimumRequired": {
+    "major": 4,
+    "minor": 1,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "default",
+      "displayName": "Default",
+      "hidden": false,
+      "binaryDir": "${sourceDir}/build/default",
+      "generator": "Ninja",
+      "cacheVariables": {
+        "BUILD_TESTS": true,
+        "BUILD_MAIN": true
+      }
+    }
+  ]
+}

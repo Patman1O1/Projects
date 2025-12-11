@@ -1,7 +1,7 @@
 #-----------------------------------------------------------------------------------------------------------------------
 # Includes
 #-----------------------------------------------------------------------------------------------------------------------
-include("../CMake/modules/VariablesCMake.cmake")
+include("../../CMake/modules/VariablesCMake.cmake")
 
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -20,8 +20,8 @@ set(VERSION 1.0.0)
 set(NAME_UPPER "${NAME}" CACHE STRING "NAME_UPPER")
 set(NAME_LOWER "${NAME}" CACHE STRING "NAME_LOWER")
 set(TYPE_LOWER "${TYPE}" CACHE STRING "TYPE_LOWER")
-set(LIBRARY_SOURCE_DIR "${CMAKE_SOURCE_DIR}/libraries/${TYPE_LOWER}/${NAME}")
-set(TEMPLATE_DIR "${CMAKE_SOURCE_DIR}/libraries/${TYPE_LOWER}/__template__")
+set(LIBRARY_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/${TYPE_LOWER}/${NAME}")
+set(TEMPLATE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/${TYPE_LOWER}/__template__")
 
 # Formating
 string(TOUPPER "${NAME_UPPER}" NAME_UPPER)
@@ -62,13 +62,9 @@ configure_file(
         @ONLY
 )
 
-configure_package_config_file(
+file(COPY_FILE "../CMakePresets.json" "CMakePresets.json")
 
-)
-
-file(COPY_FILE "CMakePresets.json" "${LIBRARY_SOURCE_DIR}/CMakePresets.json")
-
-file(COPY_FILE ".gitignore" "${LIBRARY_SOURCE_DIR}/.gitignore")
+file(COPY_FILE "../.gitignore" ".gitignore")
 
 # Configure ${LIBRARY_SOURCE_DIR}/include/${NAME}
 file(MAKE_DIRECTORY "${LIBRARY_SOURCE_DIR}/include/${NAME}")
@@ -125,8 +121,8 @@ configure_file(
 
 # Configure ${NAME}/cmake
 file(MAKE_DIRECTORY "${LIBRARY_SOURCE_DIR}/cmake")
-file(COPY_FILE "../CMake/templates/__template__-config.cmake.in" "${LIBRARY_SOURCE_DIR}/cmake/${NAME}-config.cmake.in")
-file(COPY_FILE "../CMake/templates/cmake_uninstall.cmake.in" "${LIBRARY_SOURCE_DIR}/cmake/cmake_uninstall.cmake.in")
+file(COPY_FILE "../../CMake/templates/__template__-config.cmake.in" "${LIBRARY_SOURCE_DIR}/cmake/${NAME}-config.cmake.in")
+file(COPY_FILE "../../CMake/templates/cmake_uninstall.cmake.in" "${LIBRARY_SOURCE_DIR}/cmake/cmake_uninstall.cmake.in")
 
 # Prompt the user that the library was created
 message(STATUS "${NAME} successfully created")
