@@ -1,0 +1,79 @@
+cmake_minimum_required(VERSION 4.1)
+project(iterator
+    VERSION 1.0.0
+    DESCRIPTION ""
+    LANGUAGES CXX)
+
+cmake_file_api(
+        QUERY
+        API_VERSION 1
+        CODEMODEL 2.3
+)
+
+include("../../../../CMake/modules/FunctionsCMake.cmake")
+include("../../../../CMake/modules/FunctionsCXX.cmake")
+
+# Set default build type if not specified
+if(NOT DEFINED CMAKE_BUILD_TYPE AND NOT DEFINED CMAKE_CONFIGURATION_TYPES)
+    set(CMAKE_BUILD_TYPE Release CACHE STRING "Build type" FORCE)
+    set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS "Debug" "Release" "MinSizeRel" "RelWithDebInfo")
+endif()
+
+set(LIBRARY_TARGET ${PROJECT_NAME} CACHE STRING "Library target")
+set(LIBRARY_NAMESPACE "iterator" CACHE STRING "Library namespace")
+
+add_library(${LIBRARY_TARGET} INTERFACE)
+add_library(${LIBRARY_NAMESPACE}::${LIBRARY_TARGET} ALIAS ${LIBRARY_TARGET})
+
+# Set the library properties
+set_target_properties(${LIBRARY_TARGET} PROPERTIES
+    SOVERSION ${PROJECT_VERSION_MAJOR}
+    VERSION ${PROJECT_VERSION}
+)
+
+# Include library directories
+target_include_directories(${LIBRARY_TARGET}
+    INTERFACE
+        "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
+        "$<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/include>"
+        "$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>"
+)
+
+option(BUILD_TESTS "Build the library's test suits")
+option(BUILD_MAIN "Build an executable linked to the library")
+option(BUILD_DOCS "Generate library documentation")
+
+if(BUILD_TESTS)
+    add_subdirectory(tests)
+endif()
+
+if(BUILD_MAIN)
+    add_subdirectory(src)
+endif()
+
+if(BUILD_DOCS)
+    build_docs()
+endif()
+
+configure_package_config_file("${CMAKE_CURRENT_SOURCE_DIR}/cmake/${LIBRARY_TARGET}-config.cmake.in"
+                              "${LIBRARY_TARGET}-config.cmake"
+                              INSTALL_DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/${LIBRARY_TARGET}")
+
+write_basic_package_version_file(
+        "${LIBRARY_TARGET}-config-version.cmake"
+        COMPATIBILITY SameMajorVersion)
+
+install(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/include/"
+        TYPE INCLUDE
+        COMPONENT ${LIBRARY_TARGET}-dev)
+
+install(TARGETS ${LIBRARY_TARGET}
+        EXPORT ${LIBRARY_TARGET}-targets
+        COMPONENT ${LIBRARY_TARGET}-dev)
+
+install(FILES
+        "${CMAKE_CURRENT_BINARY_DIR}/${LIBRARY_TARGET}-config.cmake"
+        "${CMAKE_CURRENT_BINARY_DIR}/${LIBRARY_TARGET}-config-version.cmake"
+        COMPONENT ${LIBRARY_TARGET}-dev
+        DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/${LIBRARY_TARGET}")
+
