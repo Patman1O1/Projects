@@ -8,9 +8,13 @@
 set(CMAKE_SYSTEM_NAME Linux)
 set(CMAKE_SYSTEM_PROCESSOR arm)
 
+# Host Compilers
+set(CMAKE_C_COMPILER clang)
+set(CMAKE_CXX_COMPILER clang++)
+
 # Cross Compilers
-set(CMAKE_C_COMPILER arm-linux-gnueabihf-gcc)
-set(CMAKE_CXX_COMPILER arm-linux-gnueabihf-g++)
+set(CMAKE_C_COMPILER_TARGET  arm-linux-gnueabihf-gcc)
+set(CMAKE_CXX_COMPILER_TARGET  arm-linux-gnueabihf-g++)
 
 # System Root for Target System
 set(CMAKE_SYSROOT /usr/arm-linux-gnueabihf)
