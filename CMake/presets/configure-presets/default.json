@@ -6,7 +6,8 @@
       "name": "default",
       "displayName": "Default",
       "description": "The base configuration preset that all other configuration presets inherit from.",
-      "hidden": true
+      "hidden": true,
+      "binaryDir": "${sourceDir}/build/${presetName}"
     }
   ]
 }
