@@ -1,0 +1,17 @@
+{
+  "version": 10,
+  "include": ["../cmake-version.json", "linux.json"],
+  "configurePresets": [
+    {
+      "name": "linux-clang-make",
+      "displayName": "Linux Clang Make",
+      "description": "A configuration preset for Linux that uses the Clang compiler and Make build generator.",
+      "inherits": "linux",
+      "hidden": false,
+      "cacheVariables": {
+        "CMAKE_C_COMPILER": "/usr/bin/clang",
+        "CMAKE_CXX_COMPILER": "/usr/bin/clang++"
+      }
+    }
+  ]
+}
